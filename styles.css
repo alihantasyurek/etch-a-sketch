@@ -1,8 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 500px;
-  min-height: 500px;
+  width: 70vmin;
   background-color: pink;
 }
 
@@ -10,8 +16,5 @@
   display: flex;
   /* border: 1px solid black; */
   outline: 1px solid black;
-  /* aspect-ratio: 1; */
-}
-
-h1 {
+  aspect-ratio: 1;
 }
