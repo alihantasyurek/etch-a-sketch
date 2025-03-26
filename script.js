@@ -3,7 +3,7 @@ const container = document.querySelector("#container")
 const sizeBtn = document.querySelector("#size")
 const colorBtn = document.querySelector("#color");
 const resetBtn = document.querySelector("#reset")
-let isRandom = false;
+let isRandom = true;
 
 function createGrids() {
   const totalGrid = gridSize * gridSize;
@@ -31,12 +31,22 @@ function generateColor() {
   return isRandom ? randomColor : gray;
 }
 
+function getOpacity(child) {
+  let currOpa = Number(child.style.opacity) || 0;
+  return Math.min(currOpa += 0.1, 1);
+}
+
 function coloring() {
   container.addEventListener("mouseover", (e) => {
-    const color = generateColor();
     const child = e.target.closest(".grid");
     if (child && container.contains(child)) {
-      child.style.backgroundColor = color;
+      if (!child.dataset.color) {
+        const color = generateColor();
+        child.style.backgroundColor = color;
+        child.dataset.color = color;
+      }
+      let opacity = getOpacity(child);
+      child.style.opacity = opacity;
     }
   })
 
@@ -67,9 +77,19 @@ colorBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
   const children = document.querySelectorAll(".grid");
-  children.forEach((child) => { child.style.backgroundColor = "" });
+  children.forEach((child) => {
+    child.style.backgroundColor = "";
+    child.removeAttribute("data-color");
+    child.dataset.color = "";
+    child.style.removeProperty("opacity");
+  });
 });
 
-createGrids();
-coloring();
 
+function init() {
+  colorBtn.style.backgroundColor = generateColor();
+  createGrids();
+  coloring();
+}
+
+init();

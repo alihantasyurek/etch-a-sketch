@@ -19,6 +19,7 @@ body {
   /* border: 1px solid black; */
   outline: 1px solid black;
   aspect-ratio: 1;
+  box-sizing: border-box;
 }
 
 .buttons > * {
@@ -29,8 +30,4 @@ body {
 
 .red {
   background-color: red;
-}
-
-.randomColor {
-  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
