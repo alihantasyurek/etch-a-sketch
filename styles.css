@@ -8,8 +8,10 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 70vmin;
+  width: 85vmin;
+  /* height: 80vmin; */
   background-color: pink;
+  outline: 1px solid purple; 
 }
 
 .grid {
@@ -17,4 +19,18 @@ body {
   /* border: 1px solid black; */
   outline: 1px solid black;
   aspect-ratio: 1;
+}
+
+.buttons > * {
+  padding: 5px;
+  margin: 10px;
+  min-width: 100px;
+}
+
+.red {
+  background-color: red;
+}
+
+.randomColor {
+  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
